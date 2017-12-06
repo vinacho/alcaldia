@@ -136,6 +136,8 @@ class RadicarPqrsf extends CI_Controller{
 
                 $files = $_FILES;
 
+                //echo "<pre>"; print_r($_FILES); echo "</pre>"; exit();
+
                 if($files != null){
                     $cpt = count($_FILES['adjuntos']['name']);
                     for($i = 0; $i < $cpt; $i++)
@@ -145,8 +147,9 @@ class RadicarPqrsf extends CI_Controller{
                         $_FILES['userfile']['tmp_name'] = $files['adjuntos']['tmp_name'][$i];
                         $_FILES['userfile']['error'] = $files['adjuntos']['error'][$i];
                         $_FILES['userfile']['size'] = $files['adjuntos']['size'][$i];    
+                        $ext=pathinfo($files['adjuntos']['name'][$i], PATHINFO_EXTENSION);
 
-                        $nomArchivo = $numPqr . "_" . $anoPqr . "_" . $nomDocumento . ", " . $numPqr . "_" . $anoPqr . "_" . ($i+1).'.'.$files['adjuntos']['ext'][$i];
+                        $nomArchivo = $numPqr . "_" . $anoPqr . "_"  . $numPqr . "_" . $anoPqr . "_" . ($i+1).'.'.$ext;
 
                         $this->upload->initialize($this->set_upload_options($nomArchivo));
                         $this->upload->do_upload();

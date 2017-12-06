@@ -94,13 +94,14 @@ class SeguimientoPqrsf extends CI_Controller{
                     $_FILES['userfile']['type'] = $files['adjuntos']['type'][$i];
                     $_FILES['userfile']['tmp_name'] = $files['adjuntos']['tmp_name'][$i];
                     $_FILES['userfile']['error'] = $files['adjuntos']['error'][$i];
-                    $_FILES['userfile']['size'] = $files['adjuntos']['size'][$i];    
+                    $_FILES['userfile']['size'] = $files['adjuntos']['size'][$i]; 
+                    $ext=pathinfo($files['adjuntos']['name'][$i], PATHINFO_EXTENSION);   
 
-                    $nomArchivo = $numPqr . "_" . $anoPqr . "_" . $nomDocumento . ", " . $numPqr . "_" . $anoPqr . "_" . ($i+1);
+                    $nomArchivo = $numPqr . "_" . $anoPqr  . "_" . $numPqr . "_" . $anoPqr . "_" . ($i+1);
 
                     $this->upload->initialize($this->set_upload_options($nomArchivo));
                     $this->upload->do_upload();
-                    $this->anexoPQRSF_SAL->InsertANEXO_PQRSF_SAL($lastPqrsf, $anoPqr, "uploads/" . $nomArchivo);
+                    $this->anexoPQRSF_SAL->InsertANEXO_PQRSF_SAL($lastPqrsf, $anoPqr, "uploads/" . $nomArchivo.'.'.$ext);
                 }
             }
 
