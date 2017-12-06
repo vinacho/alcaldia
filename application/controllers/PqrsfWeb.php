@@ -4,6 +4,18 @@ class PqrsfWeb extends CI_Controller{
 
     public function __construct() {
         parent::__construct();
+
+        if ($this->session->userdata('COD_ROL') != 'VEN') {
+            if ($this->session->userdata('COD_FUN') == null) {
+              redirect('login', 'refresh'); exit();
+            }
+            if ($this->session->userdata('COD_ROL') == 'ADM') {
+                redirect('dependencias', 'refresh'); exit();
+            } else {
+                redirect('seguimientoPqrsf', 'refresh'); exit();
+            }
+            
+        }
         $this->load->helper(array('form', 'url','html'));
         $this->load->Model('Pqrsf');
         $this->load->Model('persona');

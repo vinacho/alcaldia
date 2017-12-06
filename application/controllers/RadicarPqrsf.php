@@ -5,10 +5,11 @@ class RadicarPqrsf extends CI_Controller{
 	public function __construct() {
 
         parent::__construct();
-        if ($this->session->userdata('COD_FUN') == null) {
+// print_r($this->session->userdata()); exit();
+
+        if ($this->session->userdata('COD_ROL') != 'VEN') {
             redirect('pqrsfWeb', 'refresh');
-        }
-        else{
+        }  else {
             $this->load->helper(array('form', 'url','html'));
             $this->load->Model('pagina_rol');
             $this->load->Model('pqrsf');
@@ -20,10 +21,13 @@ class RadicarPqrsf extends CI_Controller{
             $this->load->Model('anexoPQRSF');
             $this->load->Model('dependencia');
         }
+
+       
     }
 
     public function index()
     {
+        //$this->session->userdata('COD_FUN')
     	$data['documentos'] = $this->documento->SelectDocumentos();
     	$data['tiposPersona'] = $this->tipoPersona->SelectTIPO_PERSONA();
     	$data['tiposDocumento'] = $this->documentoIdentificacion->SelectTIPO_DOCUMENTO();
@@ -142,7 +146,7 @@ class RadicarPqrsf extends CI_Controller{
                         $_FILES['userfile']['error'] = $files['adjuntos']['error'][$i];
                         $_FILES['userfile']['size'] = $files['adjuntos']['size'][$i];    
 
-                        $nomArchivo = $numPqr . "_" . $anoPqr . "_" . $nomDocumento . ", " . $numPqr . "_" . $anoPqr . "_" . ($i+1);
+                        $nomArchivo = $numPqr . "_" . $anoPqr . "_" . $nomDocumento . ", " . $numPqr . "_" . $anoPqr . "_" . ($i+1).'.'.$files['adjuntos']['ext'][$i];
 
                         $this->upload->initialize($this->set_upload_options($nomArchivo));
                         $this->upload->do_upload();

@@ -18,6 +18,17 @@ class AnexoPQRSF extends CI_Model{
 			return $query->result_array();
 		}	
 	}
+
+	public function SelectANEXO_PQRSF_SAL($numPqr){
+		$sql = "SELECT * " .
+			   "FROM anexo_pqrsf_sal " .
+			   "WHERE num_pqr_sal = ". $numPqr . "";
+		$query =  $this->db->query($sql);
+		
+		if ($query->num_rows() > 0){
+			return $query->result_array();
+		}	
+	}
 }
 
 ?>

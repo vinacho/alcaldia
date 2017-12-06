@@ -5,7 +5,7 @@ class Parametro extends CI_Model{
 	Registra un nuevo parametro en el sistema
 	*/
 	public function InsertPARAMETRO($val_par, $cod_par, $nom_par){
-		$sql = "INSERT INTO Parametro(cod_par, nom_par, val_par) " .
+		$sql = "INSERT INTO parametro(cod_par, nom_par, val_par) " .
 			   "VALUES('" . $cod_par . "', '" . $nom_par . "', '" . $val_par . "')";
 		$query =  $this->db->query($sql);
 	}
@@ -14,7 +14,7 @@ class Parametro extends CI_Model{
 	Actualiza un parametro segun el codigo proporcionado
 	*/
 	public function UpdatePARAMETRO($val_par, $cod_par, $nom_par){
-		$sql = "UPDATE Parametro " .
+		$sql = "UPDATE parametro " .
 			   "SET val_par	= '" . $val_par . "' ";
 			   	   
 		if(strcmp($nom_par, "") != 0){
@@ -30,7 +30,7 @@ class Parametro extends CI_Model{
 	*/
 	public function SelectPARAMETRO($cod_par){
 		$sql = "SELECT * " .
-			   "FROM Parametro " .
+			   "FROM parametro " .
 			   "WHERE cod_par = '". $cod_par ."'";
 		$query =  $this->db->query($sql);
 		
@@ -41,7 +41,7 @@ class Parametro extends CI_Model{
 
 	public function SelectPARAMETROS(){
 		$sql = "SELECT * " .
-			   "FROM Parametro ";
+			   "FROM parametro ";
 		$query =  $this->db->query($sql);
 		
 		if ($query->num_rows() > 0){

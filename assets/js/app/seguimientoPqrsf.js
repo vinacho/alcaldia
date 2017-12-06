@@ -77,6 +77,7 @@ $(document).ready(function(){
 		 	url: base_path + 'seguimientoPqrsf/GetInfoPqrsf',
 		 	data: {numTick: numTick}, 
 		 	success: function(resp) { 
+
 	 			
 	 			$('#txtFecRac').val('');
 	 			$('#txtAsunto').val('');
@@ -86,9 +87,10 @@ $(document).ready(function(){
 	 			$('#txtTieneAnexos').val('');
 	 			$('#txtTipo').val('');
 	 			$('#tablaSeguimiento').html('');
+	 			$('#tablaAdjuntos').html('');
 
 	 			var infoFun = jQuery.parseJSON(resp);
-
+                 console.log(infoFun);
 	 			//Llena el formulario
 	 			$('#txtFecRac').val(infoFun.FEC_RAC);
 	 			$('#txtAsunto').val(infoFun.ASU_PQR);
@@ -98,6 +100,7 @@ $(document).ready(function(){
 	 			$('#txtTieneAnexos').val(infoFun.ANEXO);
 	 			$('#txtTipo').val(((infoFun.COP_PQR == "S") ? "Copia de petición" : "Original de petición"));
 	 			$('#tablaSeguimiento').html(infoFun.TAB_SEG);
+	 			$('#tablaAdjuntos').html(infoFun.anexos);
 
 	 		},
 			error: function(){
@@ -105,6 +108,24 @@ $(document).ready(function(){
 			}
 	 	});
 
+	});
+$('#infoAdjuntos').on('click', function(){
+	alert('vvv');
+		numTick = $(this).data('id');
+		$.ajax({
+			type: "POST",
+		 	url: base_path + 'seguimientoPqrsf/Getadjuntos',
+		 	data: {numTick: numTick}, 
+		 	success: function(resp) { 
+
+	 			$('#tablaAdjuntos2').html(resp);
+
+	 		},
+			error: function(){
+				alert("error consultando la información");
+			}
+	 	});
+		
 	});
 	
 	$('#btnFinalizar').click(function(){

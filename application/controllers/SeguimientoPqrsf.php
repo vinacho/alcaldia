@@ -152,23 +152,41 @@ class SeguimientoPqrsf extends CI_Controller{
                                     "<th>No Oficios</th>" .
                                     "<th>Asunto</th>" .
                                     "<th>Descripcion</th>" .
+                                    "<th>Adjuntos</th>" .
                                     "<th>Opciones</th>" .
                                 "</tr>". 
                             "</thead>"  ;
 
                 foreach($registros as $fila){
+                    $anexos2 = $this->anexoPQRSF->SelectANEXO_PQRSF_SAL($fila['NUM_PQR_SAL']);
                     $html = $html ."<tr>" .
                                         "<td class='center'>" . $fila['FEC_OFI_SAL'] . "</td>" .
                                         "<td class='center'>" . $fila['CAN_FOL_SAL'] . "</td>" .
                                         "<td class='center'>" . $fila['DES_OFI_SAL'] . "</td>" .
-                                        "<td class='center'>" . $fila['ASU_OFI_SAL'] . "</td>" .
-                                        "<td class='center'> " .
+                                        "<td class='center'>" . $fila['ASU_OFI_SAL'] . "</td>" ;
+                                        if ($anexos2!=null) {
+                                                $html=$html."<td>";
+                                                $html=$html."<ul>";
+                                                foreach ($anexos2 as $key2 => $value2) {
+                                                     $html=$html."<li>";
+                                                    $html=$html."<a href='".$value2['PATH_ANE_SAL'] . "'>" . $value2['PATH_ANE_SAL'] . "</a>";
+                                                     $html=$html."</li>";
+                                                }
+                                                $html=$html."</ul>";
+                                                $html=$html. "</td> ";
+                                        }  else {
+                                            $html=$html."<td></td>";
+
+                                        }
+                                      $html=$html.  "<td class='center'> " .
                                             "<a class='btn btn-success' href='#' data-toggle='modal' data-target='#infoSeguimiento'> ".
                                                 "<i class='icon-edit icon-white'></i> ".
                                                 "Visualizar ".
-                                            "</a> ".
-                                        "</td>" . 
-                                    "</tr>";
+                                            "</a> ";
+
+                                          
+
+                                  $html = $html .  "</td>"."</tr>";
                 }
                 $html = $html . "</tbody></table>";
             }
@@ -184,6 +202,19 @@ class SeguimientoPqrsf extends CI_Controller{
                     $pre_dep = $depend['PRE_DEP'];
                 }
             }
+             $anexostable = "<table id='tbSeguimientosx' class='table table-striped table-bordered bootstrap-datatable datatable'> "  ;
+
+                            foreach ($anexos as $key => $value) {
+                              
+                            
+ $anexostable = $anexostable ."<tr>" .
+                                        "<td class='center'><a href='" . $value['PATH_ANE'] . "'>" . $value['PATH_ANE'] . "</a></td>" .
+                                    "</tr>";
+                              }
+
+
+
+ $anexostable = $anexostable . "</tbody></table>";
 
     		//Prepara la informacion a retornar
 	    	$infoPqrsf = array('FEC_RAC' => $info['FEC_RAC_PQR'], 'ASU_PQR' => $info['ASU_PQR'], 
@@ -195,12 +226,34 @@ class SeguimientoPqrsf extends CI_Controller{
                                'COD_FUN' => $info['COD_FUN'], 'HOR_RAC_PQR'=> $info['HOR_RAC_PQR'], 
                                'CAN_FOL_PQR' => $info['CAN_FOL_PQR'], 'NUM_PQR' => $info['NUM_PQR'],
                                'ANIO_PQR' => $info['ANIO_PQR'], 'NOM_FUN' => $nomFun, 
-                               'PRE_DEP' => $pre_dep, 'COD_ROL' => $this->session->userdata('COD_ROL'));
+                               'PRE_DEP' => $pre_dep, 'COD_ROL' => $this->session->userdata('COD_ROL'),'anexos' => $anexostable);
 			echo json_encode($infoPqrsf);
     	}
     	else{
     		echo "No se ha encontrado información del radicado con numero [" . $numTick . "]";
     		exit();
     	} 
+    }
+
+
+    public function Getadjuntos()   
+    {   
+        $numTick = $this->input->post('numTick');
+         $anexos = $this->anexoPQRSF->SelectANEXO_PQRSF_SAL($numTick);
+         $anexostable = "<table id='tbSeguimientosx' class='table table-striped table-bordered bootstrap-datatable datatable'> "  ;
+
+                            foreach ($anexos as $key => $value) {
+                              
+                            
+ $anexostable = $anexostable ."<tr>" .
+                                        "<td class='center'><a href='" . $value['PATH_ANE'] . "'>" . $value['PATH_ANE'] . "</a></td>" .
+                                    "</tr>";
+                              }
+
+
+
+ $anexostable = $anexostable . "</tbody></table>";
+ echo $anexostable;
+        
     }
 }

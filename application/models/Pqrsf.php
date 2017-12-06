@@ -115,6 +115,7 @@ class Pqrsf extends CI_Model{
 	/*Carga los PQRSF pertenecientes a la dependencia, para el caso qeu qse quiera re-asignar,
 	  los que estan en estado P: pendientes por asignar  */
 	public function ListaPqrsfPorAsignar($COD_FUN, $A_REASIGNAR){
+	//	print_r($this->session->userdata); exit();
 		$sql = "SELECT * " .
 			   "FROM pqrsf_ent p " .
 			   "INNER JOIN documento d ON d.cod_doc = p.cod_doc " .
@@ -126,14 +127,14 @@ class Pqrsf extends CI_Model{
 			$sql = $sql . "WHERE est_pqr IN ('A', 'P') ";
 		}
 			   
-		$sql = $sql ."AND cod_fun IN (SELECT cod_fun " .
+		$sql = $sql ."AND ( cod_fun IN (SELECT cod_fun " .
 			   				   		 "FROM funcionario WHERE cod_dep = (" .
                                   		     							"SELECT cod_dep " .
                                   								        "FROM funcionario " .
                                   								        "WHERE cod_fun = '" . $COD_FUN . "'" .
                                   								       ")" .
-							  		 ")  " . 
-			   "AND fec_rac_pqr BETWEEN date_add(NOW(), INTERVAL -15 DAY) AND NOW() " .
+							  		 ") OR cod_fun_ent='".$COD_FUN."' )" . 
+			   "AND fec_rac_pqr BETWEEN date_add(NOW(), INTERVAL -30 DAY) AND NOW() " .
 			   "ORDER BY fec_rac_pqr DESC, num_pqr DESC";
 		$query =  $this->db->query($sql);
 		
@@ -145,13 +146,15 @@ class Pqrsf extends CI_Model{
 	public function ListaPqrsfASeguimiento($COD_FUN){
 		$sql = "SELECT * " . 
 			   "FROM pqrsf_ent p " .
-			   "INNER JOIN documento d ON d.cod_doc = p.cod_doc " .
+			   "LEFT JOIN documento d ON d.cod_doc = p.cod_doc " .
 			   "LEFT JOIN persona pe ON pe.num_per = p.num_per " .
+			   "LEFT JOIN funcionario fu ON fu.cod_fun = p.cod_fun " .
 			   "WHERE fec_cie_pqr IS NULL " .
-			   "AND cod_fun = '". $COD_FUN . "' " .
+			  // "AND cod_fun = '". $COD_FUN . "' " .
 			   "AND est_pqr = 'A' " . 
 			   "ORDER BY fec_rac_pqr DESC, num_pqr DESC ";
 		$query =  $this->db->query($sql);
+		//echo $this->db->last_query();
 		
 		if ($query->num_rows() > 0){
 			return $query->result_array();

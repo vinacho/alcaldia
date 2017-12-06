@@ -64,6 +64,7 @@
 											<th>Asunto</th>
 											<th>Quien radicó</th>
 											<th>Identificación</th>
+											<th>Asignación</th>
 											<th>Opciones</th>
 										</tr>
 									</thead>   							
@@ -79,6 +80,7 @@
 																"<td class='center'>" . $fila['ASU_PQR'] . "</td>" .
 																"<td class='center'>" . $fila['NOM_PER'] . "</td>" .
 																"<td class='center'>" . $fila['NUM_DOC_PER'] . "</td>" .
+																"<td class='center'>" . $fila['NOM_FUN'] . "</td>" .
 																"<td class='center'> " .
 																	"<a class='btn btn-info' href='#'> ".
 																		"<i class='icon-zoom-in icon-white'></i> ".
@@ -97,6 +99,7 @@
 							<div id="pnlSeguimiento" style="display:none;">
 								
 								<div>
+									<div class="row" style="margin-left: 0px;">
 
 									<legend>Información del radicado</legend>
 									<div class="span6" style="margin-left:0px;">
@@ -165,6 +168,17 @@
 												<input class="input-xlarge focused" id="txtTipo" name="txtTipo" type="text" style="width:100%;" maxlength="20" readonly="readonly">
 											</div>
 										</div>
+		                            </div>
+		                            </div>
+		                            <div class="row" style="margin-left: 0px;">
+		                            	
+		                            
+
+		                            <legend>Adjuntos</legend>
+									<div class="span12" style="margin-left:0px;">
+			                            <div id="tablaAdjuntos"></div>
+		                            </div>
+
 		                            </div>
 
 		                            <legend>Datos básicos del seguimiento</legend>
@@ -323,6 +337,26 @@
 										<textarea class="input-xlarge focused" id="txtDescVisual" name="txtDescVisual" style="width:100%;" rows="3" readonly="readonly"></textarea>
 									</div>
 								</div>
+
+							</div>
+							<div class="modal-footer">
+								<a href="#" class="btn" data-dismiss="modal">Cerrar ventana</a>
+							</div>
+						</div>
+
+
+
+
+
+
+						<div class="modal hide fade" id="infoAdjuntos">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">×</button>
+								<h3>Adjuntos de seguimiento</h3>
+							</div>
+							<div class="modal-body">
+
+								<div class="tablaAdjuntos2"></div>
 
 							</div>
 							<div class="modal-footer">
