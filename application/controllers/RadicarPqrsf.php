@@ -152,8 +152,19 @@ class RadicarPqrsf extends CI_Controller{
                         $nomArchivo = $numPqr . "_" . $anoPqr . "_"  . $numPqr . "_" . $anoPqr . "_" . ($i+1).'.'.$ext;
 
                         $this->upload->initialize($this->set_upload_options($nomArchivo));
-                        $this->upload->do_upload();
+
+                         if ( ! $this->upload->do_upload('userfile'))
+                {
+                        $error = array('error' => $this->upload->display_errors()); print_r($error); exit();
+
+                        
+                }
+                else
+                {
+                      
                         $this->anexoPQRSF->InsertANEXO_PQRSF_ENT($numPqr, $anoPqr, "uploads/" . $nomArchivo);
+                }
+                        
                     }
                 }
                 

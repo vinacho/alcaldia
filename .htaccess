@@ -1,27 +1,5 @@
-#Cuando se activa permite reescribir las URLs
 RewriteEngine on
-
-#Seccion utilizada para que la URL quite la pagina index.php y con eso mejorar las URLs para SEO y los buscadores con patrones MVC
-
-# El simbolo ^ significa que coincida el inicio de un string. Ejemplo ^a = coindice un string que comience en a
-# El simbolo $ significa que coindica el fin de un string. Ejemplo a$ = coindice un string que termine en a
-# El simbolo . significa que coincida un solo caracter. Ejemplo c.t = coincide cat, cut, cot
-# El simbolo + significa que se repite un caracter una o mas veces. Ejemplo a+ = aa, aaa, aaaa
-# El simbolo * significa que se repite un caracter cero o mas veces. Ejemplo b* = bb, bbb, bbbb, o coindice con una cadena vacia
-# El simbolo ? significa que es un caracter opcional. Ejemplo colou?r = color, colour
-# El simbolo () significa que agrupa datos de caracteres simples como los anteriores y evalua que coincidan como se define.
-#    Ejemplo: (ab)+ coincide ababab
-# El simbolo [] significa que evalua un conjunto de caracteres. Ejemplo c[oau]t = cat, cot, cut
-# El simbolo [^ ] significa niega un caracter. Ejemplo c[^/]t = cat, cot, cut, c=t pero no c/t
-# El simbolo ! significa que niega una expresion regular
-
-# --------------------------------------------------------
-# Explicacion de la regla para quitar index.php del sitio
-# --------------------------------------------------------
-# Sino inicia por index.php o robots.txt o sitemap o la carpeta assets
-# !^(index\.php|robots\.txt|sitemap\.xml|assets)
-
-# [L] Last - Para el procesamiento de reglas
-
-RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.xml|assets)
-RewriteRule ^(.*)$ index.php/$1 [L]
+RewriteCond $1 !^(index.php|resources|robots.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
