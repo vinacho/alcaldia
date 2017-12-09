@@ -72,7 +72,13 @@
 											<?php
 											if($listaPqrsf != null){
 												foreach($listaPqrsf as $fila){
-													$fila = "<tr>" .
+													if ($fila['IMP']==1) {
+														$ro="<tr style='color:green'>";	
+													} else {
+														$ro = "<tr>" ;
+													}
+											        		
+													$fila = $ro .
 																"<td class='center'>" . $fila['FEC_RAC_PQR'] . "</td>" .
 																"<td class='center'>" . $fila['NUM_PQR'] . "</td>" .
 																"<td class='center'>" . $fila['NUM_TIC_PQR'] . "</td>" .

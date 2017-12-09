@@ -131,9 +131,12 @@ class SeguimientoPqrsf extends CI_Controller{
     public function GetInfoPqrsf(){
     	
     	$numTick = $this->input->post('numTick');
-    	
+    	$imp = $this->input->post('imp');
         //Consulta el pqrsf
     	$info = $this->pqrsf->SelectPQRSF($numTick);
+        if ($imp==1) {
+                $this->pqrsf->setimp($numTick);
+            }
 
     	if($info != null){
     		
@@ -204,7 +207,7 @@ class SeguimientoPqrsf extends CI_Controller{
                 }
             }
              $anexostable = "<table id='tbSeguimientosx' class='table table-striped table-bordered bootstrap-datatable datatable'> "  ;
-
+if($anexos != null) {
                             foreach ($anexos as $key => $value) {
                               
                             
@@ -214,7 +217,7 @@ class SeguimientoPqrsf extends CI_Controller{
                               }
 
 
-
+}
  $anexostable = $anexostable . "</tbody></table>";
 
     		//Prepara la informacion a retornar
@@ -228,6 +231,8 @@ class SeguimientoPqrsf extends CI_Controller{
                                'CAN_FOL_PQR' => $info['CAN_FOL_PQR'], 'NUM_PQR' => $info['NUM_PQR'],
                                'ANIO_PQR' => $info['ANIO_PQR'], 'NOM_FUN' => $nomFun, 
                                'PRE_DEP' => $pre_dep, 'COD_ROL' => $this->session->userdata('COD_ROL'),'anexos' => $anexostable);
+
+            
 			echo json_encode($infoPqrsf);
     	}
     	else{

@@ -29,7 +29,7 @@ $(document).ready(function(){
 		$.ajax({
 			type: 'POST',
 		 	url: base_path + 'seguimientoPqrsf/GetInfoPqrsf',
-		 	data: {numTick: numTick}, 
+		 	data: {numTick: numTick, imp:1}, 
 		 	success: function(resp) { 
 
 		 		var infoPqrsf = jQuery.parseJSON(resp);
@@ -45,8 +45,9 @@ $(document).ready(function(){
 		 						'</div>';
 		 		$('#pnlImpresion').html(contenido);
 
-				printdiv('pnlImpresion');
+				printdiv('pnlImpresion'); 
 		 		$('#pnlImpresion').hide();
+		 		location.reload();
 				
 			},
 			error: function(){

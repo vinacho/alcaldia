@@ -52,6 +52,14 @@ class Pqrsf extends CI_Model{
 		$this->db->query($sql);
 	}
 
+	public function setimp($num_tic_pqr){
+		$sql = "UPDATE pqrsf_ent " . 
+			   "SET imp = 1 " . 
+			   "WHERE num_tic_pqr = '" . $num_tic_pqr . "'";
+			  // echo $sql; exit();
+		$this->db->query($sql);
+	}
+
 	public function SelectPQRSF($num_tic_pqr){
 		$sql = "SELECT * " . 
 			   "FROM pqrsf_ent  p " .
