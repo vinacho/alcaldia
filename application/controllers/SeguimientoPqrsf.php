@@ -348,8 +348,8 @@ if($anexos != null) {
           //  echo json_encode($infoPqrsf);
 
             
-                 $email='ivandariovinam@gmail.com';//$info['EMAIL_PER'];
-                 $subject ='hola'; //'Información de PQRS';
+                 $email=$info['EMAIL_PER'];
+                 $subject = 'Información de PQRS';
                  $mensaje='<!DOCTYPE html>
                  <html>
                  <head>
