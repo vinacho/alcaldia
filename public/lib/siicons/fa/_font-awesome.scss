@@ -1,0 +1,207 @@
+@import 'map';
+
+// Font family.
+@mixin font-awesome-font($dir: '') {
+  $ver: '4.6.3';
+
+  @if $dir == '' {
+    $dir: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/' + $ver;
+  }
+
+  @if $dir != '' {
+    $dir: $dir + '/';
+  }
+
+  @at-root {
+    @font-face {
+      font-family:            FontAwesome;
+      src:                    url($dir + 'fonts/fontawesome-webfont.eot?v=' + $ver);
+      src:                    url($dir + 'fonts/fontawesome-webfont.eot?v=' + $ver + '#iefix') format('embedded-opentype'), url($dir + 'fonts/fontawesome-webfont.woff2?v=' + $ver) format('woff2'), url($dir + 'fonts/fontawesome-webfont.woff?v=' + $ver) format('woff'), url($dir + 'fonts/fontawesome-webfont.ttf?v=' + $ver) format('truetype'), url($dir + 'fonts/fontawesome-webfont.svg?v=' + $ver + '#fontawesomeregular') format('svg');
+      font-weight:            normal;
+      font-style:             normal;
+    }
+  }
+}
+
+// Font family style.
+@mixin font-awesome-font-styles {
+  font:                       normal normal normal 14px/1 FontAwesome;
+  text-rendering:             optimizeLegibility;
+  -webkit-font-smoothing:     antialiased;
+  font-smoothing:             antialiased;
+  display:                    inline-block;
+  font-size:                  inherit;
+  text-decoration:            inherit;
+  text-transform:             none;
+}
+
+// Markup classes.
+@mixin font-awesome-classes($prefix: font-awesome) {
+  .#{$prefix}::before {
+    @include font-awesome-font-styles;
+  }
+
+  @each $-key, $-value in $font-awesome-icons {
+    .#{$prefix}-#{$-key}::before {
+      content:                $-value;
+    }
+  }
+
+  .#{$prefix}-lg {
+    font-size:                1.33333333em;
+    line-height:              0.75em;
+    vertical-align:          -15%;
+  }
+
+  .#{$prefix}-2x {
+    font-size:                2em;
+  }
+
+  .#{$prefix}-3x {
+    font-size:                3em;
+  }
+
+  .#{$prefix}-4x {
+    font-size:                4em;
+  }
+
+  .#{$prefix}-5x {
+    font-size:                5em;
+  }
+
+  .#{$prefix}-fw {
+    text-align:               center;
+    width:                    1.28571429em;
+  }
+
+  .#{$prefix}-border {
+    border-radius:           .1em;
+    padding:                 .2em .25em .15em;
+    border:                   solid 0.08em;
+  }
+
+  .#{$prefix}-pull-left {
+    float:                    left;
+    margin-right:            .3em;
+  }
+
+  .#{$prefix}-pull-right {
+    float:                    right;
+    margin-left:             .3em;
+  }
+
+  .#{$prefix}-rotate-90 {
+    @include transform(rotate(90deg));
+  }
+
+  .#{$prefix}-rotate-180 {
+    @include transform(rotate(180deg));
+  }
+
+  .#{$prefix}-rotate-270 {
+    @include transform(rotate(270deg));
+  }
+
+  .#{$prefix}-flip-horizontal {
+    @include transform(scale(-1, 1));
+  }
+
+  .#{$prefix}-flip-vertical {
+    @include transform(scale(1, -1));
+  }
+
+  .#{$prefix}-inverse {
+    @include filter(invert(100%));
+  }
+
+  .#{$prefix}-spin {
+    @include animation(#{$prefix}-animation-spin 2s infinite linear);
+  }
+
+  .#{$prefix}-pulse {
+    @include animation(#{$prefix}-animation-spin 1s infinite steps(8));
+  }
+
+  .#{$prefix}-ul {
+    padding-left:             0;
+    list-style-type:          none;
+    margin-left:              2.14285714em;
+
+    > li {
+      position:               relative;
+
+      .#{$prefix}-li {
+        text-align:           center;
+        position:             absolute;
+        left:                -2.14285714em;
+        width:                2.14285714em;
+        top:                  0.14285714em;
+
+        .#{$prefix}-lg {
+          left:              -1.85714286em;
+        }
+      }
+    }
+  }
+
+  .#{$prefix}-stack {
+    width:                    2em;
+    height:                   2em;
+    line-height:              2em;
+    vertical-align:           middle;
+    position:                 relative;
+    display:                  inline-block;
+
+    .#{$prefix}-stack-1x,
+    .#{$prefix}-stack-2x {
+      left:                   0;
+      width:                  100%;
+      text-align:             center;
+      position:               absolute;
+    }
+
+    .#{$prefix}-stack-1x {
+      line-height:            inherit;
+    }
+
+    .#{$prefix}-stack-2x {
+      font-size:              2em;
+    }
+  }
+
+  @at-root {
+    @include keyframes(#{$prefix}-animation-spin) {
+      0% {
+        @include transform(rotate(0deg));
+      }
+
+      100% {
+        @include transform(rotate(359deg));
+      }
+    }
+  }
+}
+
+// Long markup classes.
+@mixin font-awesome-long-classes {
+  @include font-awesome-classes(font-awesome);
+}
+
+// Short markup classes.
+@mixin font-awesome-short-classes {
+  @include font-awesome-classes(fa);
+}
+
+// Custom markup classes.
+@mixin font-awesome-custom-classes($prefix) {
+  @include font-awesome-classes($prefix);
+}
+
+// Make an icon out of any element.
+@mixin font-awesome($icon, $position: before) {
+  &::#{$position} {
+    @include font-awesome-font-styles;
+
+    content:                  map-get($font-awesome-icons, $icon);
+  }
+}

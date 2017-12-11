@@ -109,8 +109,43 @@ $(document).ready(function(){
 	 	});
 
 	});
+
+	$('table tbody a.btn-success').live('click', function(){
+		
+
+		var numTick = "";
+		$(this).parent().parent().children("td").each(function (index) {
+            switch (index) {
+                case 1:
+					$('#txtNumTick').val($(this).text());
+					numTick = $('#txtNumTick').val();
+					$('#txxtCantFol').focus();
+            		break;
+            }
+        });
+		
+        $.ajax({
+			type: "POST",
+		 	url: base_path + 'seguimientoPqrsf/email',
+		 	data: {numTick: numTick}, 
+		 	success: function(resp) { 
+
+	 			
+	 			if (resp=='si') {
+	 				alert('Enviado');
+	 			}
+
+	 		},
+			error: function(){
+				alert("error consultando la información");
+			}
+	 	});
+
+	});
+
+
 $('#infoAdjuntos').on('click', function(){
-	alert('vvv');
+	
 		numTick = $(this).data('id');
 		$.ajax({
 			type: "POST",

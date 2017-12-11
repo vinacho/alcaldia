@@ -1,0 +1,5 @@
+// This file compiles.
+@import '../vendor/package/bourbon/bourbon-v4.2.3/bourbon';
+@import 'font-awesome';
+@include font-awesome-font;
+@include font-awesome-long-classes;

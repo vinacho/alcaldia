@@ -86,6 +86,10 @@
 																		"<i class='icon-zoom-in icon-white'></i> ".
 																		"Seguimiento".
 																	"</a> ".
+																	"<a class='btn btn-success' href='#'> ".
+																		
+																		"Enviar email".
+																	"</a> ".
 																"</td>" . 
 															"</tr>";
 														echo $fila;

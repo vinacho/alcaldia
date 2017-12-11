@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2017 a las 23:45:32
--- Versión del servidor: 5.7.14
--- Versión de PHP: 5.6.25
+-- Servidor: localhost
+-- Tiempo de generación: 12-12-2017 a las 00:42:10
+-- Versión del servidor: 10.1.19-MariaDB
+-- Versión de PHP: 7.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -68,7 +68,13 @@ INSERT INTO `anexo_pqrsf_ent` (`NUM_ANE`, `NUM_PQR`, `ANIO_PQR`, `PATH_ANE`) VAL
 (109, 10, 2017, 'uploads/10_2017_Comunicado, 10_2017_1'),
 (110, 11, 2017, 'uploads/11_2017_Informe, 11_2017_1'),
 (111, 12, 2017, 'uploads/12_2017_Cancelación, 12_2017_1'),
-(112, 12, 2017, 'uploads/12_2017_Cancelación, 12_2017_2');
+(112, 12, 2017, 'uploads/12_2017_Cancelación, 12_2017_2'),
+(113, 13, 2017, 'uploads/13_2017_Citación, 13_2017_1'),
+(114, 14, 2017, 'uploads/14_2017_Cancelación, 14_2017_1'),
+(115, 15, 2017, 'uploads/15_2017_Cancelación, 15_2017_1'),
+(116, 15, 2017, 'uploads/15_2017_Cancelación, 15_2017_2'),
+(117, 18, 2017, 'uploads/18_2017_Acción de tutela, 18_2017_1.jpg'),
+(118, 21, 2017, 'uploads/21_2017_21_2017_1.jpg');
 
 -- --------------------------------------------------------
 
@@ -109,7 +115,10 @@ INSERT INTO `anexo_pqrsf_sal` (`NUM_ANE_SAL`, `NUM_PQR_SAL`, `ANIO_PQR_SAL`, `PA
 (37, 27, 2017, 'uploads/8_2017_Información, 8_2017_2'),
 (39, 29, 2017, 'uploads/10_2017_Comunicado, 10_2017_1'),
 (41, 31, 2017, 'uploads/10_2017_Comunicado, 10_2017_1'),
-(42, 32, 2017, 'uploads/7_2017_Querellas, 7_2017_1');
+(42, 32, 2017, 'uploads/7_2017_Querellas, 7_2017_1'),
+(43, 33, 2017, 'uploads/14_2017_Cancelación, 14_2017_1'),
+(44, 33, 2017, 'uploads/14_2017_Cancelación, 14_2017_2'),
+(45, 34, 2017, 'uploads/15_2017_Cancelación, 15_2017_1');
 
 -- --------------------------------------------------------
 
@@ -131,9 +140,9 @@ CREATE TABLE `dependencia` (
 
 INSERT INTO `dependencia` (`COD_DEP`, `NOM_DEP`, `PRE_DEP`, `NUM_INT_ENT_DEP`, `NUM_INT_SAL_DEP`) VALUES
 ('DAF', 'DIRECCION ADMINISTRATIVA Y FINANCIERA', 111, 3, 1),
-('DES', 'DESPACHO', 110, 4, 1),
+('DES', 'DESPACHO', 110, 13, 1),
 ('DTE', 'DEPENDENCIA TEMPORAL', 100, 2, 1),
-('MNP', 'MINISTERIO PUBLICO', 112, 2, 1),
+('MNP', 'MINISTERIO PUBLICO', 112, 3, 1),
 ('SRP', 'SERVICIO PUBLICOS', 113, 7, 1),
 ('VAD', 'VIGILANCIA ADMINISTRATIVA', 114, 3, 1),
 ('VEN', 'VENTANILLA UNICA', 0, 1, 1);
@@ -267,7 +276,7 @@ CREATE TABLE `pagina` (
 --
 
 INSERT INTO `pagina` (`PATH_PAG`, `COD_MEN`, `NOM_PAG`, `TIP_PAG`, `ORD_PAG`, `VIS_PAG`) VALUES
-('asignarPqrsf', '1', 'Asignación PQRSF', 'P', 2, 'S'),
+('asignarPqrsf', '1', 'Asignación PQRSF', 'P', 2, 'N'),
 ('dependencias', '1', 'Dependencias', 'P', 4, 'S'),
 ('documentoRadicacion', '1', 'Clases Documento', 'P', 5, 'S'),
 ('funcionarios', '1', 'Funcionarios', 'P', 9, 'S'),
@@ -275,7 +284,7 @@ INSERT INTO `pagina` (`PATH_PAG`, `COD_MEN`, `NOM_PAG`, `TIP_PAG`, `ORD_PAG`, `V
 ('parametros', '1', 'Parámetros', 'P', 6, 'S'),
 ('radicarPqrsf', '1', 'Radicar PQRSF', 'P', 1, 'S'),
 ('reasignarPqrsf', '1', 'Reasignar PQRSF', 'P', 10, 'S'),
-('reporteEntrega', '1', 'Reporete entrega', 'P', 12, 'S'),
+('reporteEntrega', '1', 'Reporte entrega', 'P', 12, 'S'),
 ('reporteGeneral', '1', 'Reporte multicriterios', 'P', 13, 'S'),
 ('roles', '1', 'Roles', 'P', 7, 'S'),
 ('seguimientoPqrsf', '1', 'Seguimiento PQRSF', 'P', 3, 'S'),
@@ -297,40 +306,40 @@ CREATE TABLE `pagina_rol` (
 --
 
 INSERT INTO `pagina_rol` (`COD_ROL`, `PATH_PAG`) VALUES
-('PER', 'asignarPqrsf'),
-('SEC', 'asignarPqrsf'),
-('VEN', 'asignarPqrsf'),
 ('ADM', 'dependencias'),
 ('ADM', 'documentoRadicacion'),
 ('ADM', 'funcionarios'),
-('JDP', 'impresionPqrsfEnt'),
-('PER', 'impresionPqrsfEnt'),
-('SEC', 'impresionPqrsfEnt'),
-('VEN', 'impresionPqrsfEnt'),
 ('ADM', 'parametros'),
-('PER', 'radicarPqrsf'),
-('SEC', 'radicarPqrsf'),
-('VEN', 'radicarPqrsf'),
-('JDP', 'reasignarPqrsf'),
-('PER', 'reasignarPqrsf'),
-('VEN', 'reasignarPqrsf'),
+('ADM', 'roles'),
+('ADM', 'tipoDocumento'),
 ('CIN', 'reporteEntrega'),
-('PER', 'reporteEntrega'),
-('SEC', 'reporteEntrega'),
-('VEN', 'reporteEntrega'),
 ('CIN', 'reporteGeneral'),
 ('FUN', 'reporteGeneral'),
-('JDP', 'reporteGeneral'),
-('PER', 'reporteGeneral'),
-('SEC', 'reporteGeneral'),
-('VEN', 'reporteGeneral'),
-('ADM', 'roles'),
 ('FUN', 'seguimientoPqrsf'),
+('JDP', 'impresionPqrsfEnt'),
+('JDP', 'reasignarPqrsf'),
+('JDP', 'reporteGeneral'),
 ('JDP', 'seguimientoPqrsf'),
+('PER', 'asignarPqrsf'),
+('PER', 'impresionPqrsfEnt'),
+('PER', 'radicarPqrsf'),
+('PER', 'reasignarPqrsf'),
+('PER', 'reporteEntrega'),
+('PER', 'reporteGeneral'),
 ('PER', 'seguimientoPqrsf'),
+('SEC', 'asignarPqrsf'),
+('SEC', 'impresionPqrsfEnt'),
+('SEC', 'radicarPqrsf'),
+('SEC', 'reporteEntrega'),
+('SEC', 'reporteGeneral'),
 ('SEC', 'seguimientoPqrsf'),
-('VEN', 'seguimientoPqrsf'),
-('ADM', 'tipoDocumento');
+('VEN', 'asignarPqrsf'),
+('VEN', 'impresionPqrsfEnt'),
+('VEN', 'radicarPqrsf'),
+('VEN', 'reasignarPqrsf'),
+('VEN', 'reporteEntrega'),
+('VEN', 'reporteGeneral'),
+('VEN', 'seguimientoPqrsf');
 
 -- --------------------------------------------------------
 
@@ -350,9 +359,9 @@ CREATE TABLE `parametro` (
 
 INSERT INTO `parametro` (`COD_PAR`, `NOM_PAR`, `VAL_PAR`) VALUES
 ('ANIOSIS', 'AÑO DE TRABAJO DEL SISTEMA', '2017'),
-('NUMPQR', 'CONSECUTIVO PQRSF DE ENTRADA DEL SISTEMA', '13'),
-('NUMPQRSAL', 'CONSECUTIVO PQRSF DE SALIDA', '8'),
-('NUMPQRSEG', 'CONSECUTIVO DE SEGUIMIETO PARA PQRSF', '33');
+('NUMPQR', 'CONSECUTIVO PQRSF DE ENTRADA DEL SISTEMA', '24'),
+('NUMPQRSAL', 'CONSECUTIVO PQRSF DE SALIDA', '9'),
+('NUMPQRSEG', 'CONSECUTIVO DE SEGUIMIETO PARA PQRSF', '35');
 
 -- --------------------------------------------------------
 
@@ -386,7 +395,13 @@ INSERT INTO `persona` (`NUM_PER`, `COD_TIP_PER`, `COD_TIP_DOC`, `NUM_DOC_PER`, `
 (124, 'PN', 'CEX', '987765', 'pepe', 'p', 'M', 'Bogotá', 'pepe@p.com'),
 (125, 'PN', 'CED', '456321', 'Ramón', 'Ramos', 'M', 'Roncesvalles', 'ramon@rr.com'),
 (126, 'PN', 'CED', '456654', 'Nacho', 'Vidal', 'M', 'choco', 'nacho@vvv.com'),
-(127, 'PN', 'CED', '123321', 'Obama', 'perez', 'M', 'eu', 'eu@jjj.com');
+(127, 'PN', 'CED', '123321', 'Obama', 'perez', 'M', 'eu', 'eu@jjj.com'),
+(128, 'PN', 'CED', '3423432', 'fdfdfsd', 'dfsdfsdf', 'M', 'dfdfdf', 'ivanvin@asshgaj.dcd'),
+(129, 'PJ', 'CEX', '556545', 'fdfdfsd', 'dfsdfsdf', 'M', 'dfdfdf', 'ivanvi3en@asshgaj.dcd'),
+(130, 'PN', 'CEX', '5444354', 'fdfdfsd', 'dfsdfsdf', 'M', 'dfdfdf', 'ivanvi3en@asshgaj.dcd'),
+(131, 'PN', 'CEX', '54645645', 'fdfdfsd', 'fdfbvc', 'M', 'dfdfdf', 'ivanvi3en@asshgaj.dcd'),
+(132, 'PN', 'CEX', '4546454', 'fdfdfsd', 'dfsdfsdf', 'M', 'dfdfdf', 'ivanvi3en@asshgaj.dcd'),
+(133, 'PN', 'CED', '5454566556', 'cvcvvc', 'vcvcv', 'M', 'dfdfdf', 'ivanvi3en@asshgaj.dcd');
 
 -- --------------------------------------------------------
 
@@ -428,28 +443,40 @@ CREATE TABLE `pqrsf_ent` (
   `FEC_ENT_DEP_PQR` date DEFAULT NULL COMMENT 'FECHA DE ENTREGA AL JEFE DE DEPENDENCIA O ASIGNACION AL JEFE DE DEPENDENCIA',
   `FEC_CIE_PQR` date DEFAULT NULL COMMENT 'FECHA DE CIERRE DEL CASO PQRSF O FECHA DE ARCHIVADO EL CASO',
   `EST_PQR` varchar(1) DEFAULT 'A' COMMENT 'ESTADO DE LA PQRSF',
-  `COP_PQR` varchar(1) DEFAULT NULL COMMENT 'INDICA SI ES UNA COPIA DE UNA PETICION O NO'
+  `COP_PQR` varchar(1) DEFAULT NULL COMMENT 'INDICA SI ES UNA COPIA DE UNA PETICION O NO',
+  `IMP` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Determina si ya fue impreso'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='ENTIDAD ENCARGADA DE ALMACENAR LAS PQRSF QUE SE RECIBEN DE L';
 
 --
 -- Volcado de datos para la tabla `pqrsf_ent`
 --
 
-INSERT INTO `pqrsf_ent` (`NUM_PQR`, `ANIO_PQR`, `NUM_INT_PQR`, `NUM_PER`, `COD_DOC`, `COD_FUN`, `FEC_RAC_PQR`, `HOR_RAC_PQR`, `ASU_PQR`, `CAN_FOL_PQR`, `COD_FUN_ENT`, `NUM_OFI_ENT`, `OBS_PQR`, `DES_PQR`, `NUM_TIC_PQR`, `TIPO_COR_ENT`, `GEN_REP`, `TIP_PQR_ENT`, `FEC_MAX_RES`, `FEC_ENT_DEP_PQR`, `FEC_CIE_PQR`, `EST_PQR`, `COP_PQR`) VALUES
-(1, 2015, 1, 118, 'DEP', 'funserv1', '2015-12-26', '2015-12-26 15:26:02', 'Servicios publicos alumbrado', 5, 'hector.barragan', 'A21', 'Muy caro el recibo', 'El recibo me llego caro porque no lo entregaron a tiempo.', 'U8WASSBL2WZYDWDGXNGN', 'E', NULL, 'P', '2016-01-10', NULL, NULL, 'A', 'N'),
-(2, 2015, 2, NULL, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:03:40', 'demanda ibal', 1, 'hector.barragan', '1233333', 'algunas observaciones', 'esta es una version anonima', 'E4YOCL86FRR4THK49428', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N'),
-(3, 2015, 3, 119, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:11:21', 'demanda ibal', 2, 'hector.barragan', '1233', 'Alguna observacion', 'se envia una kfjdakfjsdka', '5N7QM2EB2ADK0EDADY3V', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N'),
-(4, 2015, 1, 120, 'ATU', 'personero', '2017-12-01', '2017-12-01 12:57:56', 'exclamacion al montaje de casa', 12, 'hector.barragan', '234234', 'kljahdkljhasdfhklasdf', 'asjdlkfjhaskldfhaklsdhflkajhsdkfhjaksdf', 'C47P0HMRXBED367VZ5A4', 'I', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N'),
-(4, 2017, 4, 122, 'PET', 'jefe.servicios', '2017-12-01', '2017-12-01 13:40:20', 'Agua', 1, 'heber.guifo', '345', 'hola', 'agua', 'KQCNY7FGMAZEDWO6MKJ2', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N'),
-(5, 2015, 1, 121, 'CNV', 'heber.guifo', '2017-12-01', '2017-12-01 13:08:28', 'sdfasdfasdf', 5, 'hector.barragan', '5326345', 'asdfasdfasdf', 'asdasdfasdfasdf', 'JVCG9ELP4CS8JS3VJC9Z', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N'),
-(5, 2017, 5, 123, 'CAN', 'jefe.servicios', '2017-12-01', '2017-12-01 13:52:49', 'Agua', 1, 'personero', '123', 'agua', 'cancelacion de agua', '506RNR4BK5Z98MTVJ5AT', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N'),
-(6, 2017, 1, 124, 'SOL', 'jefe.vigilancia', '2017-12-01', '2017-12-01 15:14:59', 'Robo', 2, 'personero', '12', 'p', 'videos de seguridad&nbsp;', 'N3SIH6MOD00EO11V79AU', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N'),
-(7, 2017, 1, 125, 'QRL', 'jefe.mpublico', '2017-12-01', '2017-12-01 15:47:29', 'basura', 1, 'hector.barragan', '786', 'basuras', 'mal manejo de residuos', 'B5UIUNBL59SB2WVEY3N1', 'I', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N'),
-(8, 2017, 2, 126, 'INF', 'personero', '2017-12-01', '2017-12-01 15:55:11', 'fiestas', 3, 'personero', '34', 'información', 'recursos invertidos en las fiestas', 'W4M7G20X92FKR65XY0TE', 'E', NULL, 'P', '2017-12-04', NULL, NULL, 'A', 'N'),
-(9, 2017, 2, 127, 'CMC', 'jefe.vigilancia', '2017-12-01', '2017-12-01 16:03:26', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NRP0HF5GB0K6G02BSD7M', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N'),
-(10, 2017, 2, 127, 'CMC', 'heber.guifo', '2017-12-01', '2017-12-01 16:17:07', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NK4CVLD5TV2AAFSHOONX', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N'),
-(11, 2017, 6, NULL, 'INR', 'jefe.servicios', '2017-12-01', '2017-12-01 16:27:03', 'alumbrado navideño', 1, 'funserv1', '567', 'alumbrado navideño', 'informe sobre el tema navideño', 'BOPRSQIFUBG7GZ9F4U4Y', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N'),
-(12, 2017, 3, NULL, 'CAN', 'personero', '2017-12-02', '2017-12-02 10:25:09', 'Musica', 1, 'hector.barragan', '234', 'musica', 'ver documento adjunto', 'RIS4W1HSG1WAWM9H8DAO', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N');
+INSERT INTO `pqrsf_ent` (`NUM_PQR`, `ANIO_PQR`, `NUM_INT_PQR`, `NUM_PER`, `COD_DOC`, `COD_FUN`, `FEC_RAC_PQR`, `HOR_RAC_PQR`, `ASU_PQR`, `CAN_FOL_PQR`, `COD_FUN_ENT`, `NUM_OFI_ENT`, `OBS_PQR`, `DES_PQR`, `NUM_TIC_PQR`, `TIPO_COR_ENT`, `GEN_REP`, `TIP_PQR_ENT`, `FEC_MAX_RES`, `FEC_ENT_DEP_PQR`, `FEC_CIE_PQR`, `EST_PQR`, `COP_PQR`, `IMP`) VALUES
+(1, 2015, 1, 118, 'DEP', 'funserv1', '2015-12-26', '2015-12-26 15:26:02', 'Servicios publicos alumbrado', 5, 'hector.barragan', 'A21', 'Muy caro el recibo', 'El recibo me llego caro porque no lo entregaron a tiempo.', 'U8WASSBL2WZYDWDGXNGN', 'E', NULL, 'P', '2016-01-10', NULL, NULL, 'A', 'N', 0),
+(2, 2015, 2, NULL, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:03:40', 'demanda ibal', 1, 'hector.barragan', '1233333', 'algunas observaciones', 'esta es una version anonima', 'E4YOCL86FRR4THK49428', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N', 0),
+(3, 2015, 3, 119, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:11:21', 'demanda ibal', 2, 'hector.barragan', '1233', 'Alguna observacion', 'se envia una kfjdakfjsdka', '5N7QM2EB2ADK0EDADY3V', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N', 0),
+(4, 2015, 1, 120, 'ATU', 'jefe.mpublico', '2017-12-01', '2017-12-01 12:57:56', 'exclamacion al montaje de casa', 12, 'hector.barragan', '234234', 'kljahdkljhasdfhklasdf', 'asjdlkfjhaskldfhaklsdhflkajhsdkfhjaksdf', 'C47P0HMRXBED367VZ5A4', 'I', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0),
+(4, 2017, 4, 122, 'PET', 'jefe.servicios', '2017-12-01', '2017-12-01 13:40:20', 'Agua', 1, 'heber.guifo', '345', 'hola', 'agua', 'KQCNY7FGMAZEDWO6MKJ2', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 0),
+(5, 2015, 1, 121, 'CNV', 'heber.guifo', '2017-12-01', '2017-12-01 13:08:28', 'sdfasdfasdf', 5, 'hector.barragan', '5326345', 'asdfasdfasdf', 'asdasdfasdfasdf', 'JVCG9ELP4CS8JS3VJC9Z', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 1),
+(5, 2017, 5, 123, 'CAN', 'jefe.servicios', '2017-12-01', '2017-12-01 13:52:49', 'Agua', 1, 'personero', '123', 'agua', 'cancelacion de agua', '506RNR4BK5Z98MTVJ5AT', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
+(6, 2017, 1, 124, 'SOL', 'jefe.vigilancia', '2017-12-01', '2017-12-01 15:14:59', 'Robo', 2, 'personero', '12', 'p', 'videos de seguridad&nbsp;', 'N3SIH6MOD00EO11V79AU', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
+(7, 2017, 1, 125, 'QRL', 'jefe.mpublico', '2017-12-01', '2017-12-01 15:47:29', 'basura', 1, 'hector.barragan', '786', 'basuras', 'mal manejo de residuos', 'B5UIUNBL59SB2WVEY3N1', 'I', NULL, 'P', '2017-12-02', NULL, NULL, '1', 'N', 0),
+(8, 2017, 2, 126, 'INF', 'personero', '2017-12-01', '2017-12-01 15:55:11', 'fiestas', 3, 'personero', '34', 'información', 'recursos invertidos en las fiestas', 'W4M7G20X92FKR65XY0TE', 'E', NULL, 'P', '2017-12-04', NULL, NULL, 'A', 'N', 0),
+(9, 2017, 2, 127, 'CMC', 'jefe.vigilancia', '2017-12-01', '2017-12-01 16:03:26', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NRP0HF5GB0K6G02BSD7M', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
+(10, 2017, 2, 127, 'CMC', 'heber.guifo', '2017-12-01', '2017-12-01 16:17:07', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NK4CVLD5TV2AAFSHOONX', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
+(11, 2017, 6, NULL, 'INR', 'jefe.servicios', '2017-12-01', '2017-12-01 16:27:03', 'alumbrado navideño', 1, 'funserv1', '567', 'alumbrado navideño', 'informe sobre el tema navideño', 'BOPRSQIFUBG7GZ9F4U4Y', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
+(12, 2017, 3, NULL, 'CAN', 'personero', '2017-12-02', '2017-12-02 10:25:09', 'Musica', 1, 'hector.barragan', '234', 'musica', 'ver documento adjunto', 'RIS4W1HSG1WAWM9H8DAO', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 0),
+(13, 2017, NULL, 128, 'CIT', 'hector.barragan', '2017-12-05', '2017-12-05 12:59:21', 'fdsdfdf', 1, NULL, '44545', 'cvcvcxvcx', 'vccvxcvcxvc', 'SM000SA2KAKRY96FCUHQ', 'E', NULL, 'W', '2017-12-06', NULL, NULL, 'P', 'N', 0),
+(14, 2017, 2, 129, 'CAN', 'jefe.mpublico', '2017-12-06', '2017-12-06 01:20:04', 'fdsdfdf', 22, 'hector.barragan', '344545', 'vcvcxvxcvx', 'wfv', 'DNEBA3FUTATXTP64R86F', 'E', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0),
+(15, 2017, 4, 130, 'CAN', 'personero', '2017-12-06', '2017-12-06 13:28:15', 'xxxxx', 5, 'hector.barragan', '44545', 'cvcvcxvcx', '54treter', '96E06WIT39LLFOJY8VM7', 'E', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0),
+(16, 2017, 5, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:14:19', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', 'ND6976QZX3NCFXGUS94L', 'E', NULL, 'P', '2017-12-12', NULL, NULL, '1', 'N', 0),
+(17, 2017, 6, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:17:46', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', '4U8A1EK9QP6DDN6BOKY8', 'E', NULL, 'P', '2017-12-12', NULL, NULL, 'A', 'N', 1),
+(18, 2017, 7, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:18:07', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', 'JTROLHSJO35AXUT7R5OY', 'E', NULL, 'P', '2017-12-12', NULL, NULL, '1', 'N', 0),
+(19, 2017, 8, 132, 'ATU', 'personero', '2017-12-09', '2017-12-09 00:17:43', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'TT274ZL1D9AI4JS5XDFO', 'E', NULL, 'P', '2017-12-15', NULL, NULL, 'A', 'N', 1),
+(20, 2017, 9, 132, 'ATU', 'personero', '2017-12-09', '2017-12-09 00:19:08', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'LTLCM9DGDZAQRY91OZKO', 'E', NULL, 'P', '2017-12-15', NULL, NULL, '1', 'N', 0),
+(21, 2017, 10, 132, 'ATU', 'jefe.vigilancia', '2017-12-09', '2017-12-09 00:20:16', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'T4R25A6B98B8FXKQJ463', 'E', NULL, 'P', '2017-12-15', NULL, NULL, '1', 'N', 0),
+(22, 2017, 11, 133, 'ATU', 'personero', '2017-12-11', '2017-12-10 23:48:03', 'ffdfd', 4, 'hector.barragan', '433434', 'cvcvcxvcx', 'fdf', 'IN31G3CQQLV8GDP1J3XX', 'E', NULL, 'P', '2017-12-17', NULL, NULL, 'A', 'N', 0),
+(23, 2017, 12, 133, 'ATU', 'personero', '2017-12-11', '2017-12-10 23:49:26', 'ffdfd', 4, 'hector.barragan', '433434', 'cvcvcxvcx', 'fdf', '5MYXGE2S2TR1N2O3DFLJ', 'E', NULL, 'P', '2017-12-17', NULL, NULL, 'A', 'N', 0);
 
 -- --------------------------------------------------------
 
@@ -490,7 +517,9 @@ CREATE TABLE `pqrsf_ent_aud` (
 
 INSERT INTO `pqrsf_ent_aud` (`NUM_CON_AUD`, `NUM_PQR`, `ANIO_PQR`, `NUM_INT_PQR`, `NUM_PER`, `COD_DOC`, `COD_FUN`, `FEC_RAC_PQR`, `HOR_RAC_PQR`, `ASU_PQR`, `CAN_FOL_PQR`, `COD_FUN_ENT`, `NUM_OFI_ENT`, `OBS_PQR`, `DES_PQR`, `NUM_TIC_PQR`, `TIPO_COR_ENT`, `GEN_REP`, `TIP_PQR_ENT`, `FEC_MAX_RES`, `FEC_ENT_DEP_PQR`, `FEC_CIE_PQR`, `EST_PQR`, `COP_PQR`) VALUES
 (70, 1, 2015, 1, 118, 'DEP', 'jefe.servicios', '2015-12-26', '2015-12-26 15:26:02', 'Servicios publicos alumbrado', 5, 0, 'A21', 'Muy caro el recibo', 'El recibo me llego caro porque no lo entregaron a tiempo.', 'U8WASSBL2WZYDWDGXNGN', 'E', NULL, 'P', '2016-01-10', NULL, NULL, 'A', 'N'),
-(71, 1, 2015, 1, 118, 'DEP', 'funserv1', '2015-12-26', '2015-12-26 15:26:02', 'Servicios publicos alumbrado', 5, 0, 'A21', 'Muy caro el recibo', 'El recibo me llego caro porque no lo entregaron a tiempo.', 'U8WASSBL2WZYDWDGXNGN', 'E', NULL, 'P', '2016-01-10', NULL, NULL, 'A', 'N');
+(71, 1, 2015, 1, 118, 'DEP', 'funserv1', '2015-12-26', '2015-12-26 15:26:02', 'Servicios publicos alumbrado', 5, 0, 'A21', 'Muy caro el recibo', 'El recibo me llego caro porque no lo entregaron a tiempo.', 'U8WASSBL2WZYDWDGXNGN', 'E', NULL, 'P', '2016-01-10', NULL, NULL, 'A', 'N'),
+(72, 21, 2017, 10, 132, 'ATU', 'personero', '2017-12-09', '2017-12-09 00:20:16', 'fdsdfdf', 17, 0, '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'T4R25A6B98B8FXKQJ463', 'E', NULL, 'P', '2017-12-15', NULL, NULL, 'A', 'N'),
+(73, 4, 2015, 1, 120, 'ATU', 'personero', '2017-12-01', '2017-12-01 12:57:56', 'exclamacion al montaje de casa', 12, 0, '234234', 'kljahdkljhasdfhklasdf', 'asjdlkfjhaskldfhaklsdhflkajhsdkfhjaksdf', 'C47P0HMRXBED367VZ5A4', 'I', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N');
 
 -- --------------------------------------------------------
 
@@ -544,7 +573,9 @@ INSERT INTO `pqrsf_sal` (`NUM_PQR_SAL`, `ANIO_PQR_SAL`, `NUM_PQR`, `ANIO_PQR`, `
 (29, 2017, 10, 2017, NULL, '2017-12-02', '2017-12-02 08:21:58', 1, 'ventanilla', 'evalucion'),
 (30, 2017, 5, 2017, NULL, '2017-12-02', '2017-12-02 08:22:33', 2, 'anexos', 'anexos'),
 (31, 2017, 10, 2017, NULL, '2017-12-02', '2017-12-02 08:23:35', 4, 'saludo', 'hola'),
-(32, 2017, 7, 2017, NULL, '2017-12-02', '2017-12-02 09:06:10', 2, 'respuesta', 'respuesta');
+(32, 2017, 7, 2017, NULL, '2017-12-02', '2017-12-02 09:06:10', 2, 'respuesta', 'respuesta'),
+(33, 2017, 14, 2017, NULL, '2017-12-06', '2017-12-06 01:42:33', 3, 'sss', 'ssssss'),
+(34, 2017, 15, 2017, NULL, '2017-12-06', '2017-12-06 13:30:21', 7, 'rtrtrtrtrt', 'rtrtr');
 
 -- --------------------------------------------------------
 
@@ -574,7 +605,8 @@ INSERT INTO `pqrsf_sal_cor` (`NUM_PQR_SAL`, `ANIO_PQR_SAL`, `NUM_PQR`, `ANIO_PQR
 (4, 2017, 4, 2017, NULL, '2017-12-01', '2017-12-01 15:35:52', 1, '7', '7'),
 (5, 2017, 6, 2017, NULL, '2017-12-01', '2017-12-01 15:41:37', 2, '8', '8'),
 (6, 2017, 10, 2017, NULL, '2017-12-02', '2017-12-02 08:21:59', 1, 'ventanilla', 'evalucion'),
-(7, 2017, 10, 2017, NULL, '2017-12-02', '2017-12-02 08:23:35', 4, 'saludo', 'hola');
+(7, 2017, 10, 2017, NULL, '2017-12-02', '2017-12-02 08:23:35', 4, 'saludo', 'hola'),
+(8, 2017, 15, 2017, NULL, '2017-12-06', '2017-12-06 13:30:21', 4, 'gffgfgdfg', 'fffff');
 
 -- --------------------------------------------------------
 
@@ -827,12 +859,12 @@ ALTER TABLE `alerta`
 -- AUTO_INCREMENT de la tabla `anexo_pqrsf_ent`
 --
 ALTER TABLE `anexo_pqrsf_ent`
-  MODIFY `NUM_ANE` int(11) NOT NULL AUTO_INCREMENT COMMENT 'NUMERO CONSECUTIVO DEL ANEXO ASIGNADO POR EL SISTEMA', AUTO_INCREMENT=113;
+  MODIFY `NUM_ANE` int(11) NOT NULL AUTO_INCREMENT COMMENT 'NUMERO CONSECUTIVO DEL ANEXO ASIGNADO POR EL SISTEMA', AUTO_INCREMENT=119;
 --
 -- AUTO_INCREMENT de la tabla `anexo_pqrsf_sal`
 --
 ALTER TABLE `anexo_pqrsf_sal`
-  MODIFY `NUM_ANE_SAL` int(11) NOT NULL AUTO_INCREMENT COMMENT 'NUMERO CONSECUTIVO DEL ANEXO ASIGNADO POR EL SISTEMA', AUTO_INCREMENT=43;
+  MODIFY `NUM_ANE_SAL` int(11) NOT NULL AUTO_INCREMENT COMMENT 'NUMERO CONSECUTIVO DEL ANEXO ASIGNADO POR EL SISTEMA', AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT de la tabla `log_cron_job`
 --
@@ -842,12 +874,12 @@ ALTER TABLE `log_cron_job`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `NUM_PER` int(11) NOT NULL AUTO_INCREMENT COMMENT 'NUMERO CONSECUTIVO DE PERSONA ASIGNADO POR EL SISTEMA', AUTO_INCREMENT=128;
+  MODIFY `NUM_PER` int(11) NOT NULL AUTO_INCREMENT COMMENT 'NUMERO CONSECUTIVO DE PERSONA ASIGNADO POR EL SISTEMA', AUTO_INCREMENT=134;
 --
 -- AUTO_INCREMENT de la tabla `pqrsf_ent_aud`
 --
 ALTER TABLE `pqrsf_ent_aud`
-  MODIFY `NUM_CON_AUD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `NUM_CON_AUD` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- Restricciones para tablas volcadas
 --

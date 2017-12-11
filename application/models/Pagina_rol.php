@@ -6,7 +6,7 @@ class Pagina_rol extends CI_Model{
 		$sql = "SELECT * " .
 			   "FROM pagina_rol pr " .
 			   "INNER JOIN pagina p ON p.path_pag = pr.path_pag " . 
-			   "WHERE cod_rol = '". $COD_ROL . "' " . 
+			   "WHERE cod_rol = '". $COD_ROL . "' AND p.VIS_PAG='S' " . 
 			   "ORDER BY ord_pag";
 		$query =  $this->db->query($sql);
 		
