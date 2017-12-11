@@ -4,7 +4,7 @@
 $this->load->library('fpdf/fpdf');
 
 //Se crea la clase para adicionar la cabecera
-class PDF extends FPDF
+class PDF extends Fpdf
 
 {
     // Cabecera de página

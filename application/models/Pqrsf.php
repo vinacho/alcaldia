@@ -74,12 +74,14 @@ class Pqrsf extends CI_Model{
 	}
 
 	public function ListaPQRSF_POR_GENERAR_REP($COD_FUN){
-		$sql = "SELECT * " . 
+		$date = date('Y-m-d 00:00:00');
+		$date2 = date('Y-m-d 23:59:59');
+		 $sql = "SELECT * " . 
 			   "FROM pqrsf_ent  p " .
 			   "INNER JOIN documento d ON d.cod_doc = p.cod_doc " .
 			   "LEFT JOIN persona pe ON pe.num_per = p.num_per " .
-			   "WHERE p.cod_fun = '" . $COD_FUN . "' " .
-			   "AND p.gen_rep IS NULL";
+			   "WHERE (p.cod_fun = '" . $COD_FUN . "' OR p.cod_fun_ent = '" . $COD_FUN . "')". 
+			   "AND p.gen_rep IS NULL AND hor_rac_pqr >='".$date."' AND hor_rac_pqr <='".$date2."' ORDER BY hor_rac_pqr DESC";
 		$query =  $this->db->query($sql);
 		
 		if ($query->num_rows() > 0){

@@ -155,7 +155,7 @@ class RadicarPqrsf extends CI_Controller{
 
                          if ( ! $this->upload->do_upload('userfile'))
                 {
-                        $error = array('error' => $this->upload->display_errors()); print_r($error); exit();
+                        $error = array('error' => $this->upload->display_errors()); //print_r($error); exit();
 
                         
                 }
