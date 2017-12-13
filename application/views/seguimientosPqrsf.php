@@ -73,7 +73,7 @@
 											<?php
 											if($listaPqrsf != null){
 												foreach($listaPqrsf as $fila){
-													foreach($listaPqrsf as $fila){
+												
 													if ($fila['DEV']==1) {
 														$ro="<tr style='color:red'>";	
 													} else {

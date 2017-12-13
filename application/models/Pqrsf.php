@@ -202,9 +202,9 @@ class Pqrsf extends CI_Model{
 			   	   "cod_fun = '" . $COD_FUN . "', " .
 			   	   "num_ofi_ent = '" . $NUM_OFI_ENT . "', " .
 			   	   "asu_pqr = '" . $ASU_PQR . "', " .
-			   	   "obs_pqr = '" . $OBS_PQR . "' " .
-			   	   "dev = '" . $DEV . "' " .
-		   	   "WHERE num_tic_pqr = '" . $NUM_TIC_PQR . "' ";
+			   	   "obs_pqr = '" . $OBS_PQR . "' , " .
+			   	   "dev = " . $DEV .
+		   	   " WHERE num_tic_pqr = '" . $NUM_TIC_PQR . "' ";
 		$this->db->query($sql);
 	}
 
