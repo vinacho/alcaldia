@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 12-12-2017 a las 00:42:10
+-- Tiempo de generación: 13-12-2017 a las 00:53:04
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.9
 
@@ -444,39 +444,40 @@ CREATE TABLE `pqrsf_ent` (
   `FEC_CIE_PQR` date DEFAULT NULL COMMENT 'FECHA DE CIERRE DEL CASO PQRSF O FECHA DE ARCHIVADO EL CASO',
   `EST_PQR` varchar(1) DEFAULT 'A' COMMENT 'ESTADO DE LA PQRSF',
   `COP_PQR` varchar(1) DEFAULT NULL COMMENT 'INDICA SI ES UNA COPIA DE UNA PETICION O NO',
-  `IMP` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Determina si ya fue impreso'
+  `IMP` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'Determina si ya fue impreso',
+  `DEV` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='ENTIDAD ENCARGADA DE ALMACENAR LAS PQRSF QUE SE RECIBEN DE L';
 
 --
 -- Volcado de datos para la tabla `pqrsf_ent`
 --
 
-INSERT INTO `pqrsf_ent` (`NUM_PQR`, `ANIO_PQR`, `NUM_INT_PQR`, `NUM_PER`, `COD_DOC`, `COD_FUN`, `FEC_RAC_PQR`, `HOR_RAC_PQR`, `ASU_PQR`, `CAN_FOL_PQR`, `COD_FUN_ENT`, `NUM_OFI_ENT`, `OBS_PQR`, `DES_PQR`, `NUM_TIC_PQR`, `TIPO_COR_ENT`, `GEN_REP`, `TIP_PQR_ENT`, `FEC_MAX_RES`, `FEC_ENT_DEP_PQR`, `FEC_CIE_PQR`, `EST_PQR`, `COP_PQR`, `IMP`) VALUES
-(1, 2015, 1, 118, 'DEP', 'funserv1', '2015-12-26', '2015-12-26 15:26:02', 'Servicios publicos alumbrado', 5, 'hector.barragan', 'A21', 'Muy caro el recibo', 'El recibo me llego caro porque no lo entregaron a tiempo.', 'U8WASSBL2WZYDWDGXNGN', 'E', NULL, 'P', '2016-01-10', NULL, NULL, 'A', 'N', 0),
-(2, 2015, 2, NULL, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:03:40', 'demanda ibal', 1, 'hector.barragan', '1233333', 'algunas observaciones', 'esta es una version anonima', 'E4YOCL86FRR4THK49428', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N', 0),
-(3, 2015, 3, 119, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:11:21', 'demanda ibal', 2, 'hector.barragan', '1233', 'Alguna observacion', 'se envia una kfjdakfjsdka', '5N7QM2EB2ADK0EDADY3V', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N', 0),
-(4, 2015, 1, 120, 'ATU', 'jefe.mpublico', '2017-12-01', '2017-12-01 12:57:56', 'exclamacion al montaje de casa', 12, 'hector.barragan', '234234', 'kljahdkljhasdfhklasdf', 'asjdlkfjhaskldfhaklsdhflkajhsdkfhjaksdf', 'C47P0HMRXBED367VZ5A4', 'I', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0),
-(4, 2017, 4, 122, 'PET', 'jefe.servicios', '2017-12-01', '2017-12-01 13:40:20', 'Agua', 1, 'heber.guifo', '345', 'hola', 'agua', 'KQCNY7FGMAZEDWO6MKJ2', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 0),
-(5, 2015, 1, 121, 'CNV', 'heber.guifo', '2017-12-01', '2017-12-01 13:08:28', 'sdfasdfasdf', 5, 'hector.barragan', '5326345', 'asdfasdfasdf', 'asdasdfasdfasdf', 'JVCG9ELP4CS8JS3VJC9Z', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 1),
-(5, 2017, 5, 123, 'CAN', 'jefe.servicios', '2017-12-01', '2017-12-01 13:52:49', 'Agua', 1, 'personero', '123', 'agua', 'cancelacion de agua', '506RNR4BK5Z98MTVJ5AT', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
-(6, 2017, 1, 124, 'SOL', 'jefe.vigilancia', '2017-12-01', '2017-12-01 15:14:59', 'Robo', 2, 'personero', '12', 'p', 'videos de seguridad&nbsp;', 'N3SIH6MOD00EO11V79AU', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
-(7, 2017, 1, 125, 'QRL', 'jefe.mpublico', '2017-12-01', '2017-12-01 15:47:29', 'basura', 1, 'hector.barragan', '786', 'basuras', 'mal manejo de residuos', 'B5UIUNBL59SB2WVEY3N1', 'I', NULL, 'P', '2017-12-02', NULL, NULL, '1', 'N', 0),
-(8, 2017, 2, 126, 'INF', 'personero', '2017-12-01', '2017-12-01 15:55:11', 'fiestas', 3, 'personero', '34', 'información', 'recursos invertidos en las fiestas', 'W4M7G20X92FKR65XY0TE', 'E', NULL, 'P', '2017-12-04', NULL, NULL, 'A', 'N', 0),
-(9, 2017, 2, 127, 'CMC', 'jefe.vigilancia', '2017-12-01', '2017-12-01 16:03:26', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NRP0HF5GB0K6G02BSD7M', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
-(10, 2017, 2, 127, 'CMC', 'heber.guifo', '2017-12-01', '2017-12-01 16:17:07', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NK4CVLD5TV2AAFSHOONX', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
-(11, 2017, 6, NULL, 'INR', 'jefe.servicios', '2017-12-01', '2017-12-01 16:27:03', 'alumbrado navideño', 1, 'funserv1', '567', 'alumbrado navideño', 'informe sobre el tema navideño', 'BOPRSQIFUBG7GZ9F4U4Y', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0),
-(12, 2017, 3, NULL, 'CAN', 'personero', '2017-12-02', '2017-12-02 10:25:09', 'Musica', 1, 'hector.barragan', '234', 'musica', 'ver documento adjunto', 'RIS4W1HSG1WAWM9H8DAO', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 0),
-(13, 2017, NULL, 128, 'CIT', 'hector.barragan', '2017-12-05', '2017-12-05 12:59:21', 'fdsdfdf', 1, NULL, '44545', 'cvcvcxvcx', 'vccvxcvcxvc', 'SM000SA2KAKRY96FCUHQ', 'E', NULL, 'W', '2017-12-06', NULL, NULL, 'P', 'N', 0),
-(14, 2017, 2, 129, 'CAN', 'jefe.mpublico', '2017-12-06', '2017-12-06 01:20:04', 'fdsdfdf', 22, 'hector.barragan', '344545', 'vcvcxvxcvx', 'wfv', 'DNEBA3FUTATXTP64R86F', 'E', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0),
-(15, 2017, 4, 130, 'CAN', 'personero', '2017-12-06', '2017-12-06 13:28:15', 'xxxxx', 5, 'hector.barragan', '44545', 'cvcvcxvcx', '54treter', '96E06WIT39LLFOJY8VM7', 'E', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0),
-(16, 2017, 5, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:14:19', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', 'ND6976QZX3NCFXGUS94L', 'E', NULL, 'P', '2017-12-12', NULL, NULL, '1', 'N', 0),
-(17, 2017, 6, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:17:46', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', '4U8A1EK9QP6DDN6BOKY8', 'E', NULL, 'P', '2017-12-12', NULL, NULL, 'A', 'N', 1),
-(18, 2017, 7, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:18:07', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', 'JTROLHSJO35AXUT7R5OY', 'E', NULL, 'P', '2017-12-12', NULL, NULL, '1', 'N', 0),
-(19, 2017, 8, 132, 'ATU', 'personero', '2017-12-09', '2017-12-09 00:17:43', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'TT274ZL1D9AI4JS5XDFO', 'E', NULL, 'P', '2017-12-15', NULL, NULL, 'A', 'N', 1),
-(20, 2017, 9, 132, 'ATU', 'personero', '2017-12-09', '2017-12-09 00:19:08', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'LTLCM9DGDZAQRY91OZKO', 'E', NULL, 'P', '2017-12-15', NULL, NULL, '1', 'N', 0),
-(21, 2017, 10, 132, 'ATU', 'jefe.vigilancia', '2017-12-09', '2017-12-09 00:20:16', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'T4R25A6B98B8FXKQJ463', 'E', NULL, 'P', '2017-12-15', NULL, NULL, '1', 'N', 0),
-(22, 2017, 11, 133, 'ATU', 'personero', '2017-12-11', '2017-12-10 23:48:03', 'ffdfd', 4, 'hector.barragan', '433434', 'cvcvcxvcx', 'fdf', 'IN31G3CQQLV8GDP1J3XX', 'E', NULL, 'P', '2017-12-17', NULL, NULL, 'A', 'N', 0),
-(23, 2017, 12, 133, 'ATU', 'personero', '2017-12-11', '2017-12-10 23:49:26', 'ffdfd', 4, 'hector.barragan', '433434', 'cvcvcxvcx', 'fdf', '5MYXGE2S2TR1N2O3DFLJ', 'E', NULL, 'P', '2017-12-17', NULL, NULL, 'A', 'N', 0);
+INSERT INTO `pqrsf_ent` (`NUM_PQR`, `ANIO_PQR`, `NUM_INT_PQR`, `NUM_PER`, `COD_DOC`, `COD_FUN`, `FEC_RAC_PQR`, `HOR_RAC_PQR`, `ASU_PQR`, `CAN_FOL_PQR`, `COD_FUN_ENT`, `NUM_OFI_ENT`, `OBS_PQR`, `DES_PQR`, `NUM_TIC_PQR`, `TIPO_COR_ENT`, `GEN_REP`, `TIP_PQR_ENT`, `FEC_MAX_RES`, `FEC_ENT_DEP_PQR`, `FEC_CIE_PQR`, `EST_PQR`, `COP_PQR`, `IMP`, `DEV`) VALUES
+(1, 2015, 1, 118, 'DEP', 'funserv1', '2015-12-26', '2015-12-26 15:26:02', 'Servicios publicos alumbrado', 5, 'hector.barragan', 'A21', 'Muy caro el recibo', 'El recibo me llego caro porque no lo entregaron a tiempo.', 'U8WASSBL2WZYDWDGXNGN', 'E', NULL, 'P', '2016-01-10', NULL, NULL, 'A', 'N', 0, 0),
+(2, 2015, 2, NULL, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:03:40', 'demanda ibal', 1, 'hector.barragan', '1233333', 'algunas observaciones', 'esta es una version anonima', 'E4YOCL86FRR4THK49428', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N', 0, 0),
+(3, 2015, 3, 119, 'DEP', 'jefe.servicios', '2015-12-28', '2015-12-27 23:11:21', 'demanda ibal', 2, 'hector.barragan', '1233', 'Alguna observacion', 'se envia una kfjdakfjsdka', '5N7QM2EB2ADK0EDADY3V', 'E', NULL, 'P', '2016-01-12', NULL, NULL, 'A', 'N', 0, 0),
+(4, 2015, 1, 120, 'ATU', 'jefe.mpublico', '2017-12-01', '2017-12-01 12:57:56', 'exclamacion al montaje de casa', 12, 'hector.barragan', '234234', 'kljahdkljhasdfhklasdf', 'asjdlkfjhaskldfhaklsdhflkajhsdkfhjaksdf', 'C47P0HMRXBED367VZ5A4', 'I', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0, 0),
+(4, 2017, 4, 122, 'PET', 'jefe.servicios', '2017-12-01', '2017-12-01 13:40:20', 'Agua', 1, 'heber.guifo', '345', 'hola', 'agua', 'KQCNY7FGMAZEDWO6MKJ2', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 0, 0),
+(5, 2015, 1, 121, 'CNV', 'heber.guifo', '2017-12-01', '2017-12-01 13:08:28', 'sdfasdfasdf', 5, 'hector.barragan', '5326345', 'asdfasdfasdf', 'asdasdfasdfasdf', 'JVCG9ELP4CS8JS3VJC9Z', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 1, 0),
+(5, 2017, 5, 123, 'CAN', 'jefe.servicios', '2017-12-01', '2017-12-01 13:52:49', 'Agua', 1, 'personero', '123', 'agua', 'cancelacion de agua', '506RNR4BK5Z98MTVJ5AT', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0, 0),
+(6, 2017, 1, 124, 'SOL', 'jefe.vigilancia', '2017-12-01', '2017-12-01 15:14:59', 'Robo', 2, 'personero', '12', 'p', 'videos de seguridad&nbsp;', 'N3SIH6MOD00EO11V79AU', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0, 0),
+(7, 2017, 1, 125, 'QRL', 'jefe.mpublico', '2017-12-01', '2017-12-01 15:47:29', 'basura', 1, 'hector.barragan', '786', 'basuras', 'mal manejo de residuos', 'B5UIUNBL59SB2WVEY3N1', 'I', NULL, 'P', '2017-12-02', NULL, NULL, '1', 'N', 0, 0),
+(8, 2017, 2, 126, 'INF', 'personero', '2017-12-01', '2017-12-01 15:55:11', 'fiestas', 3, 'personero', '34', 'información', 'recursos invertidos en las fiestas', 'W4M7G20X92FKR65XY0TE', 'E', NULL, 'P', '2017-12-04', NULL, NULL, 'A', 'N', 0, 0),
+(9, 2017, 2, 127, 'CMC', 'jefe.vigilancia', '2017-12-01', '2017-12-01 16:03:26', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NRP0HF5GB0K6G02BSD7M', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0, 0),
+(10, 2017, 2, 127, 'CMC', 'heber.guifo', '2017-12-01', '2017-12-01 16:17:07', 'Ventanilla unica', 4, 'personero', '1', 'VU', 'VU', 'NK4CVLD5TV2AAFSHOONX', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0, 0),
+(11, 2017, 6, NULL, 'INR', 'jefe.servicios', '2017-12-01', '2017-12-01 16:27:03', 'alumbrado navideño', 1, 'funserv1', '567', 'alumbrado navideño', 'informe sobre el tema navideño', 'BOPRSQIFUBG7GZ9F4U4Y', 'E', NULL, 'P', '2017-12-02', NULL, NULL, 'A', 'N', 0, 0),
+(12, 2017, 3, NULL, 'CAN', 'personero', '2017-12-02', '2017-12-02 10:25:09', 'Musica', 1, 'hector.barragan', '234', 'musica', 'ver documento adjunto', 'RIS4W1HSG1WAWM9H8DAO', 'E', NULL, 'P', '2017-12-03', NULL, NULL, 'A', 'N', 0, 0),
+(13, 2017, NULL, 128, 'CIT', 'hector.barragan', '2017-12-05', '2017-12-05 12:59:21', 'fdsdfdf', 1, NULL, '44545', 'cvcvcxvcx', 'vccvxcvcxvc', 'SM000SA2KAKRY96FCUHQ', 'E', NULL, 'W', '2017-12-06', NULL, NULL, 'P', 'N', 0, 0),
+(14, 2017, 2, 129, 'CAN', 'jefe.mpublico', '2017-12-06', '2017-12-06 01:20:04', 'fdsdfdf', 22, 'hector.barragan', '344545', 'vcvcxvxcvx', 'wfv', 'DNEBA3FUTATXTP64R86F', 'E', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 1, 0),
+(15, 2017, 4, 130, 'CAN', 'personero', '2017-12-06', '2017-12-06 13:28:15', 'xxxxx', 5, 'hector.barragan', '44545', 'cvcvcxvcx', '54treter', '96E06WIT39LLFOJY8VM7', 'E', NULL, 'P', '2017-12-07', NULL, NULL, 'A', 'N', 0, 0),
+(16, 2017, 5, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:14:19', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', 'ND6976QZX3NCFXGUS94L', 'E', NULL, 'P', '2017-12-12', NULL, NULL, '1', 'N', 0, 0),
+(17, 2017, 6, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:17:46', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', '4U8A1EK9QP6DDN6BOKY8', 'E', NULL, 'P', '2017-12-12', NULL, NULL, 'A', 'N', 1, 0),
+(18, 2017, 7, 131, 'ATU', 'personero', '2017-12-06', '2017-12-06 17:18:07', 'vbcvbcv', 3, 'hector.barragan', '44545', 'vcvcxvxcvx', 'trhrthr', 'JTROLHSJO35AXUT7R5OY', 'E', NULL, 'P', '2017-12-12', NULL, NULL, '1', 'N', 0, 0),
+(19, 2017, 8, 132, 'ATU', 'personero', '2017-12-09', '2017-12-09 00:17:43', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'TT274ZL1D9AI4JS5XDFO', 'E', NULL, 'P', '2017-12-15', NULL, NULL, 'A', 'N', 1, 0),
+(20, 2017, 9, 132, 'ATU', 'personero', '2017-12-09', '2017-12-09 00:19:08', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'LTLCM9DGDZAQRY91OZKO', 'E', NULL, 'P', '2017-12-15', NULL, NULL, '1', 'N', 0, 0),
+(21, 2017, 10, 132, 'ATU', 'jefe.vigilancia', '2017-12-09', '2017-12-09 00:20:16', 'fdsdfdf', 17, 'hector.barragan', '44545', 'cvcvcxvcx', 'dcsdcsdcsdcs', 'T4R25A6B98B8FXKQJ463', 'E', NULL, 'P', '2017-12-15', NULL, NULL, '1', 'N', 0, 0),
+(22, 2017, 11, 133, 'ATU', 'personero', '2017-12-11', '2017-12-10 23:48:03', 'ffdfd', 4, 'hector.barragan', '433434', 'cvcvcxvcx', 'fdf', 'IN31G3CQQLV8GDP1J3XX', 'E', NULL, 'P', '2017-12-17', NULL, NULL, 'A', 'N', 0, 0),
+(23, 2017, 12, 133, 'ATU', 'personero', '2017-12-11', '2017-12-10 23:49:26', 'ffdfd', 4, 'hector.barragan', '433434', 'cvcvcxvcx', 'fdf', '5MYXGE2S2TR1N2O3DFLJ', 'E', NULL, 'P', '2017-12-17', NULL, NULL, 'A', 'N', 0, 0);
 
 -- --------------------------------------------------------
 

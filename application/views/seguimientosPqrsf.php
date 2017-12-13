@@ -73,8 +73,14 @@
 											<?php
 											if($listaPqrsf != null){
 												foreach($listaPqrsf as $fila){
-													$fila = "<tr>" .
-																"<td class='center'>" . $fila['FEC_RAC_PQR'] . "</td>" .
+													foreach($listaPqrsf as $fila){
+													if ($fila['DEV']==1) {
+														$ro="<tr style='color:red'>";	
+													} else {
+														$ro = "<tr>" ;
+													}
+													$fila = $ro.
+													           "<td class='center'>" . $fila['FEC_RAC_PQR'] . "</td>" .
 																"<td class='center'>" . $fila['NUM_TIC_PQR'] . "</td>" .
 																"<td class='center'>" . $fila['NOM_DOC'] . "</td>" .
 																"<td class='center'>" . $fila['ASU_PQR'] . "</td>" .

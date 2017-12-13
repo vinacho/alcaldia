@@ -56,7 +56,12 @@ class ReasignarPqrsf extends CI_Controller{
             $this->pqrsf->CopiaAuditoriaPqrsf($numTick);
 
             //Modifica la información del pqrsf
-            $this->pqrsf->ReasignarPqrsf($codDoc, $codFun, $numOficio, $asunto, $observaciones, $numTick);
+            if ($this->session->userdata('COD_ROL')=='JDP') {
+                $this->pqrsf->ReasignarPqrsf($codDoc, $codFun, $numOficio, $asunto, $observaciones, $numTick,1);
+            } else {
+                $this->pqrsf->ReasignarPqrsf($codDoc, $codFun, $numOficio, $asunto, $observaciones, $numTick);
+            }
+            
             echo "";
         }
         else{

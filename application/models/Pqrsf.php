@@ -196,13 +196,14 @@ class Pqrsf extends CI_Model{
 
 	public function ReasignarPqrsf($COD_DOC, $COD_FUN, 
 								   $NUM_OFI_ENT, $ASU_PQR, 
-								   $OBS_PQR, $NUM_TIC_PQR){
+								   $OBS_PQR, $NUM_TIC_PQR,$DEV=0){
 		$sql = "UPDATE pqrsf_ent " .
 			   "SET cod_doc = '". $COD_DOC . "', " .
 			   	   "cod_fun = '" . $COD_FUN . "', " .
 			   	   "num_ofi_ent = '" . $NUM_OFI_ENT . "', " .
 			   	   "asu_pqr = '" . $ASU_PQR . "', " .
 			   	   "obs_pqr = '" . $OBS_PQR . "' " .
+			   	   "dev = '" . $DEV . "' " .
 		   	   "WHERE num_tic_pqr = '" . $NUM_TIC_PQR . "' ";
 		$this->db->query($sql);
 	}
